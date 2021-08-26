@@ -1,18 +1,18 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { anyOfClass, deepEqual, mock, verify, when } from 'ts-mockito';
+import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
+import { User } from './entities/user.entity';
 
 describe('UsersService', () => {
   let service: UsersService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [UsersService],
-    }).compile();
-
-    service = module.get<UsersService>(UsersService);
+    service = mock(UsersService);
   });
 
+  service = new UsersService()
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
 });

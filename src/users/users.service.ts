@@ -8,7 +8,7 @@ export class UsersService {
   async create(createUserDto: CreateUserDto) {
     const user = new User();
     user.name = createUserDto.name;
-    await user.save()
+    await user.save();
     return 'This action adds a new user';
   }
 
