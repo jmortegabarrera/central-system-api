@@ -23,8 +23,8 @@ export class ChargePointService {
     return await this.chargePointRepository.save(chargePoint);
   }
 
-  async findAll() {
-    return await this.chargePointRepository.find();
+  async findAll(organizationId: string) {
+    return await this.chargePointRepository.findAllByOrganization(organizationId);
   }
 
   async findOne(id: string) {
@@ -41,7 +41,7 @@ export class ChargePointService {
 
   async remove(id: string) {
     const chargePoint = await this.chargePointRepository.findOneOrFail(id);
-    
+
     return await this.chargePointRepository.remove(chargePoint);
   }
 }
