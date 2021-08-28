@@ -36,6 +36,7 @@ export class OrganizationService {
 
     const organization = await this.organizationRepository.findOneOrFail(updateOrganizationDto.id);
     organization.name = updateOrganizationDto.name;
+    organization.legalEntity = updateOrganizationDto.legalEntity;
 
     return await this.organizationRepository.save(organization);
   }
