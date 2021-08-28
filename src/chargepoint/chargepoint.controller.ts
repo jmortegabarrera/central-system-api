@@ -15,9 +15,9 @@ export class ChargePointController {
     return this.chargePointService.create(createChargePointDto);
   }
 
-  @Get()
-  findAll(@Body() organizationId: { id: string, organizationId: string }) {
-    return this.chargePointService.findAll(organizationId.id);
+  @Post('getAll')
+  findAll(@Body() organizationId: {organizationId: string}) {
+    return this.chargePointService.findAll(organizationId.organizationId);
   }
 
   @Get(':id')

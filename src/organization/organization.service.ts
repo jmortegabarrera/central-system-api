@@ -29,7 +29,7 @@ export class OrganizationService {
   }
 
   async findOne(id: string) {
-    return await this.organizationRepository.findOneOrFail(id);
+    return await this.organizationRepository.findOne(id);
   }
 
   async update(updateOrganizationDto: UpdateOrganizationDto) {

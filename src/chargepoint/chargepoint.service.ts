@@ -34,9 +34,9 @@ export class ChargePointService {
   async update(updateChargepointDto: UpdateChargePointDto) {
     const chargePoint = await this.findOne(updateChargepointDto.id);
     chargePoint.name = updateChargepointDto.name;
-    chargePoint.cpo = await this.organizationService.findOne(updateChargepointDto.id);
+    chargePoint.cpo = await this.organizationService.findOne(updateChargepointDto.cpo);
 
-    return await chargePoint.save();
+    return await this.chargePointRepository.save(chargePoint);
   }
 
   async remove(id: string) {
