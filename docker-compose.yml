@@ -3,53 +3,30 @@ version: '3.8'
 services:
     mysql:
       image: mysql:5.7.12
-      container_name: leadin-mysql
+      container_name: central-system-db
       working_dir: /application
       volumes:
         - .:/application
       environment:
-        - MYSQL_ROOT_PASSWORD=Josemaria-1
-        - MYSQL_DATABASE=crud-test
-        - MYSQL_USER=root
-        - MYSQL_PASSWORD=Josemaria-1
+        - MYSQL_DATABASE=central-system-db
+        - MYSQL_ROOT_PASSWORD=central-system-db-pwd
+        - MYSQL_PASSWORD=central-system-db-pwd
       ports:
         - "3307:3306"
       expose:
         - 3307
-    dev:
-        container_name: nestjs_api_dev
-        image: nestjs-api-dev:1.0.0
-        build:
-            context: .
-            target: development
-            dockerfile: ./Dockerfile
-        command: npm run start:debug
-        ports:
-            - 3000:3000
-            - 9229:9229
-        networks:
-            - nesjs-network
-        volumes:
-            - .:/usr/src/app
-            - /usr/src/app/node_modules
-        restart: unless-stopped
-    prod:
-        container_name: nestjs_api_prod
-        image: nestjs-api-prod:1.0.0
-        build:
-            context: .
-            target: production
-            dockerfile: ./Dockerfile
-        command: npm run start:prod
-        ports:
-            - 3000:3000
-            - 9229:9229
-        networks:
-            - nesjs-network
-        volumes:
-            - .:/usr/src/app
-            - /usr/src/app/node_modules
-        restart: unless-stopped
-
-networks:
-    nesjs-network:
+    backend:
+      container_name: central-system-api
+      build:
+          context: .
+          dockerfile: ./Dockerfile
+      depends_on:
+        - mysql
+      ports:
+          - 3000:3000
+      environment:
+        DATABASE_NAME: central-system-db
+        DATABASE_HOST: central-system-db
+        DATABASE_PORT: 3306
+        DATABASE_USERNAME: root
+        DATABASE_PASSWORD: central-system-db-pwd

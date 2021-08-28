@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Crud-Test!"', () => {
-      expect(appController.getHello()).toBe('Crud-Test!');
+    it('should return "Central-System-Api!"', () => {
+      expect(appController.getHello()).toBe('Central-System-Api!');
     });
   });
 });
