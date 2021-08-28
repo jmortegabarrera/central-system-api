@@ -31,7 +31,8 @@
 ```bash
 $ npm install
 ```
-
+## Create database
+Is necesary to create a database and set your connection information at .env file
 ## Running the app
 
 ```bash
@@ -57,17 +58,6 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+## Run Docker
+Also you can start the aplication from docker using the comand
+$docker-compose up
