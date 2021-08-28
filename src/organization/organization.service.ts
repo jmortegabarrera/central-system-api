@@ -37,7 +37,7 @@ export class OrganizationService {
     const organization = await this.organizationRepository.findOneOrFail(updateOrganizationDto.id);
     organization.name = updateOrganizationDto.name;
 
-    return await organization.save();
+    return await this.organizationRepository.save(organization);
   }
 
   async remove(id: string) {
