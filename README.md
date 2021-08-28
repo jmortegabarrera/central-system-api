@@ -60,4 +60,6 @@ $ npm run test:cov
 ```
 ## Run Docker
 Also you can start the aplication from docker using the comand
+```bash
 $docker-compose up
+```
