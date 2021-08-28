@@ -1,26 +1,48 @@
 import { Injectable } from '@nestjs/common';
+import { Connection } from 'typeorm';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
+import { OrganizationEntity } from './entities/organization.entity';
+import { OrganizationRepository } from './repository/organization.repository';
 
 @Injectable()
 export class OrganizationService {
-  create(createOrganizationDto: CreateOrganizationDto) {
-    return 'This action adds a new organization';
+
+  private organizationRepository: OrganizationRepository;
+
+  constructor(
+    private readonly connection: Connection,
+
+  ) {
+    this.organizationRepository = this.connection.getCustomRepository(OrganizationRepository);
+  }
+  async create(createOrganizationDto: CreateOrganizationDto) {
+    const organization = new OrganizationEntity();
+    organization.name = createOrganizationDto.name;
+    organization.legalEntity = createOrganizationDto.legalEntity;
+
+    return await organization.save();
   }
 
-  findAll() {
-    return `This action returns all organization`;
+  async findAll() {
+    return await this.organizationRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} organization`;
+  async findOne(id: string) {
+    return await this.organizationRepository.findOneOrFail(id);
   }
 
-  update(id: number, updateOrganizationDto: UpdateOrganizationDto) {
-    return `This action updates a #${id} organization`;
+  async update(updateOrganizationDto: UpdateOrganizationDto) {
+
+    const organization = await this.organizationRepository.findOneOrFail(updateOrganizationDto.id);
+    organization.name = updateOrganizationDto.name;
+
+    return await organization.save();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} organization`;
+  async remove(id: string) {
+    const organization = await this.organizationRepository.findOneOrFail(id);
+    
+    return await this.organizationRepository.remove(organization);
   }
 }

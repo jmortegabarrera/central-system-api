@@ -3,12 +3,12 @@ import { OrganizationEntity } from '../../organization/entities/organization.ent
 
 @Entity()
 export class ChargePointEntity extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
   name: string;
 
-  @ManyToOne(type => OrganizationEntity)
-  cpo: ChargePointEntity;
+  @ManyToOne(type => OrganizationEntity, { onDelete: 'CASCADE' })
+  cpo: OrganizationEntity;
 }

@@ -1,7 +1,6 @@
-import { ChargePointEntity } from "../entities/chargepoint.entity";
 
-export class UpdateChargepointDto {
-  id: number;
+export class UpdateChargePointDto {
+  id: string;
   name: string;
   cpo: string;
 }

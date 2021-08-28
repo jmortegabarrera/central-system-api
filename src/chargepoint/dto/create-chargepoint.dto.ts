@@ -1,6 +1,6 @@
 import { ChargePointEntity } from "../entities/chargepoint.entity";
 
-export class CreateChargepointDto {
+export class CreateChargePointDto {
   name: string;
-  cpo: ChargePointEntity;
+  cpo: string;
 }

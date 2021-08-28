@@ -2,12 +2,12 @@ import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "t
 
 @Entity()
 export class OrganizationEntity extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   legalEntity: string;
 }

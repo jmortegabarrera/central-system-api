@@ -1,5 +1,5 @@
 export class UpdateOrganizationDto {
-  id: number;
+  id: string;
   name: string;
   legalEntity: string;
 }

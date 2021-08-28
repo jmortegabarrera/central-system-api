@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ChargepointController } from './chargepoint.controller';
-import { ChargepointService } from './chargepoint.service';
+import { ChargePointController } from './chargepoint.controller';
+import { ChargePointService } from './chargepoint.service';
 
-describe('ChargepointController', () => {
-  let controller: ChargepointController;
+describe('ChargePointController', () => {
+  let controller: ChargePointController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [ChargepointController],
-      providers: [ChargepointService],
+      controllers: [ChargePointController],
+      providers: [ChargePointService],
     }).compile();
 
-    controller = module.get<ChargepointController>(ChargepointController);
+    controller = module.get<ChargePointController>(ChargePointController);
   });
 
   it('should be defined', () => {

@@ -1,34 +1,37 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ChargepointService } from './chargepoint.service';
-import { CreateChargepointDto } from './dto/create-chargepoint.dto';
-import { UpdateChargepointDto } from './dto/update-chargepoint.dto';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { ChargePointService } from './chargepoint.service';
+import { CreateChargePointDto } from './dto/create-chargepoint.dto';
+import { UpdateChargePointDto } from './dto/update-chargepoint.dto';
 
 @Controller('chargepoint')
-export class ChargepointController {
-  constructor(private readonly chargepointService: ChargepointService) {}
+export class ChargePointController {
+  constructor(
+    private readonly chargePointService: ChargePointService,
+  ) { }
 
   @Post()
-  create(@Body() createChargepointDto: CreateChargepointDto) {
-    return this.chargepointService.create(createChargepointDto);
+  async create(@Body() createChargePointDto: CreateChargePointDto) {
+
+    return this.chargePointService.create(createChargePointDto);
   }
 
   @Get()
   findAll() {
-    return this.chargepointService.findAll();
+    return this.chargePointService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.chargepointService.findOne(+id);
+    return this.chargePointService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateChargepointDto: UpdateChargepointDto) {
-    return this.chargepointService.update(+id, updateChargepointDto);
+  @Patch('/edit')
+  update(@Body() updateChargePointDto: UpdateChargePointDto) {
+    return this.chargePointService.update(updateChargePointDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.chargepointService.remove(+id);
+    return this.chargePointService.remove(id);
   }
 }
